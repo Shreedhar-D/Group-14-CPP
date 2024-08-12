@@ -1,72 +1,53 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
 using namespace std;
 
 struct Book {
-    int book_id;
-    string author_name;
-    double price;
-    int no_of_pages;
+    string id;
+    string author;
+    float price;
+    int pages;
     string publisher;
-    int year_of_publishing;
+    int year;
 };
 
-void swap(Book &a, Book &b) {
-    Book temp = a;
-    a = b;
-    b = temp;
+void readBooks(Book books[], int& count) {
+    ifstream file("input.txt");
+    count = 0;
+    while (file >> books[count].id >> books[count].author >> books[count].price >> books[count].pages >> books[count].publisher >> books[count].year) {
+        count++;
+    }
+    file.close();
 }
 
-void sortBooks(Book books[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (books[j].author_name > books[j + 1].author_name) {
-                swap(books[j], books[j + 1]);
+void sortBooks(Book books[], int count) {
+    for (int i = 0; i < count; i++) {
+        for (int j = i + 1; j < count; j++) {
+            if (books[i].author > books[j].author) {
+                Book temp = books[i];
+                books[i] = books[j];
+                books[j] = temp;
             }
         }
     }
 }
 
-void printBooks(Book books[], int n) {
-    for (int i = 0; i < n; i++) {
-        cout << "Book ID: " << books[i].book_id << endl;
-        cout << "Author Name: " << books[i].author_name << endl;
-        cout << "Price: " << books[i].price << endl;
-        cout << "No. of Pages: " << books[i].no_of_pages << endl;
-        cout << "Publisher: " << books[i].publisher << endl;
-        cout << "Year of Publishing: " << books[i].year_of_publishing << endl;
+void writeBooks(Book books[], int count) {
+    ofstream file("output.txt");
+    for (int i = 0; i < count; i++) {
+        file << books[i].id << " " << books[i].author << " " << books[i].price << " " << books[i].pages << " " << books[i].publisher << " " << books[i].year << endl;
     }
+    file.close();
 }
 
 int main() {
-    ifstream file("books.txt");
-    if (!file) {
-        cout << "Error opening file!" << endl;
-        return 1;
-    }
+    Book books[100];
+    int count = 0;
 
-    int n;
-    file >> n;
-
-    Book books[n];
-
-    for (int i = 0; i < n; i++) {
-        file >> books[i].book_id;
-        file >> books[i].author_name;
-        file >> books[i].price;
-        file >> books[i].no_of_pages;
-        file >> books[i].publisher;
-        file >> books[i].year_of_publishing;
-    }
-
-    file.close();
-
-    sortBooks(books, n);
-
-    cout << "Sorted Books:" << endl;
-    printBooks(books, n);
+    readBooks(books, count);
+    sortBooks(books, count);
+    writeBooks(books, count);
 
     return 0;
 }
