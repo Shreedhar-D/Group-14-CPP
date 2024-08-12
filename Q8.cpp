@@ -8,12 +8,12 @@ private:
     int size;
 
 public:
-    Vector(int size) {
+    Vector(int size) {//Construcutor
         this->size = size;
         arr = new T[size];
     }
 
-    ~Vector() {
+    ~Vector() {//Destrucutor
         delete[] arr;
     }
 
