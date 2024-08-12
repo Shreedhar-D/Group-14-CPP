@@ -8,3 +8,9 @@ B008 George 19.99 190 VWX 2013
 B009 Helen 26.99 260 YZ 2017
 B010 Ian 24.99 240 ABC 2019
 B001 John 20.99 200 ABC 2010
+
+Question 6 output : 
+dt is earlier than dt2
+Next day is: 226
+Date after 5 days: 231
+Days elapsed in the year: 226
