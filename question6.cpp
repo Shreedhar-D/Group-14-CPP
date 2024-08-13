@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 class Date {
 private:
@@ -104,19 +105,19 @@ int main() {
 
     // Demonstrating the use of relational operators
     Date dt2(1, 1, 2025);
-    if (dt < dt2) std::cout << "dt is earlier than dt2" << std::endl;
+    if (dt < dt2) cout << "dt is earlier than dt2" << endl;
 
     // Incrementing the date by one day
     ++dt;
-    std::cout << "Next day is: " << dt + 0 << std::endl;  // Adding 0 days to print the incremented date
+    cout << "Next day is: " << dt + 0 << endl;  // Adding 0 days to print the incremented date
 
     // Adding days to a date
     Date newDate = dt + 5;
-    std::cout << "Date after 5 days: " << newDate + 0 << std::endl;
+    cout << "Date after 5 days: " << newDate + 0 << endl;
 
     // Conversion from Date to int to get the number of days elapsed in the year
     int days = dt;
-    std::cout << "Days elapsed in the year: " << days << std::endl;
+    cout << "Days elapsed in the year: " << days <<endl;
 
     return 0;
 }
